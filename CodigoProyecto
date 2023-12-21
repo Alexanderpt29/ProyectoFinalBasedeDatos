@@ -1,0 +1,169 @@
+/*Nombre: José Alexander Perez, Matricula: 19-EIIN-1-041, Sección: 0541*/
+
+
+
+USE [master]
+GO
+CREATE DATABASE [ServiciosRPD]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'ServiciosRPD', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.SQL2022\MSSQL\DATA\ServiciosRPD.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'ServiciosRPD_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.SQL2022\MSSQL\DATA\ServiciosRPD_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+GO
+ALTER DATABASE [ServiciosRPD] SET COMPATIBILITY_LEVEL = 160
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [ServiciosRPD].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [ServiciosRPD] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [ServiciosRPD] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [ServiciosRPD] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [ServiciosRPD] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [ServiciosRPD] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [ServiciosRPD] SET  MULTI_USER 
+GO
+ALTER DATABASE [ServiciosRPD] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [ServiciosRPD] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [ServiciosRPD] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [ServiciosRPD] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [ServiciosRPD] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [ServiciosRPD] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+ALTER DATABASE [ServiciosRPD] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [ServiciosRPD] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
+USE [ServiciosRPD]
+GO
+/****** Object:  Table [dbo].[Cliente]    Script Date: 21/12/2023 7:21:32 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Cliente](
+	[IDCliente] [int] NOT NULL,
+	[NombreCliente] [varchar](100) NULL,
+	[DireccionCliente] [varchar](255) NULL,
+	[TelefonoCliente] [varchar](10) NULL,
+	[CorreoCliente] [varchar](100) NULL,
+	[ServicioID] [int] NULL,
+ CONSTRAINT [PK_Cliente] PRIMARY KEY CLUSTERED 
+(
+	[IDCliente] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Empleado]    Script Date: 21/12/2023 7:21:32 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Empleado](
+	[IDEmpleado] [int] NOT NULL,
+	[Nombre] [varchar](50) NULL,
+	[Cargo] [varchar](50) NULL,
+	[Salario] [decimal](18, 0) NULL,
+ CONSTRAINT [PK_Empleado] PRIMARY KEY CLUSTERED 
+(
+	[IDEmpleado] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Servicios]    Script Date: 21/12/2023 7:21:32 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Servicios](
+	[ServicioID] [int] NOT NULL,
+	[NombreServicio] [varchar](50) NULL,
+	[IDEmpleado] [int] NULL,
+	[CostoServicio] [decimal](10, 2) NULL,
+ CONSTRAINT [PK_Servicios_1] PRIMARY KEY CLUSTERED 
+(
+	[ServicioID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+INSERT [dbo].[Cliente] ([IDCliente], [NombreCliente], [DireccionCliente], [TelefonoCliente], [CorreoCliente], [ServicioID]) VALUES (1, N'Juan Perez', N'Calle 27 de Febrero, Santo Domingo', N'8096589512', N'juanperez@gmail.com', 101)
+INSERT [dbo].[Cliente] ([IDCliente], [NombreCliente], [DireccionCliente], [TelefonoCliente], [CorreoCliente], [ServicioID]) VALUES (2, N'Maria Rodriguez', N'Av. Winston Churchill, Santo Domingo', N'8293658475', N'mariarodriguez@gmail.com', 102)
+INSERT [dbo].[Cliente] ([IDCliente], [NombreCliente], [DireccionCliente], [TelefonoCliente], [CorreoCliente], [ServicioID]) VALUES (3, N'Pedro Gomez', N'Calle Duarte, La Romana', N'8496322589', N'pedrogomez@gmail.com', 103)
+INSERT [dbo].[Cliente] ([IDCliente], [NombreCliente], [DireccionCliente], [TelefonoCliente], [CorreoCliente], [ServicioID]) VALUES (4, N'Laura Jimenez', N'Calle Las Palmas, Herrera', N'8095877462', N'laura.jimenez@gmail.com', 104)
+INSERT [dbo].[Cliente] ([IDCliente], [NombreCliente], [DireccionCliente], [TelefonoCliente], [CorreoCliente], [ServicioID]) VALUES (5, N'Rafael Castillo', N'Av. Abraham Lincoln, Santo Domingo', N'8096589632', N'rafaelcastillo@gmail.com', 105)
+GO
+INSERT [dbo].[Empleado] ([IDEmpleado], [Nombre], [Cargo], [Salario]) VALUES (101, N'Ana Garcia', N'Gerente de Ventas', CAST(50000 AS Decimal(18, 0)))
+INSERT [dbo].[Empleado] ([IDEmpleado], [Nombre], [Cargo], [Salario]) VALUES (102, N'Carlos Mendez', N'Tecnico de Soporte', CAST(35000 AS Decimal(18, 0)))
+INSERT [dbo].[Empleado] ([IDEmpleado], [Nombre], [Cargo], [Salario]) VALUES (103, N'Martas Martinez', N'Contadora', CAST(45000 AS Decimal(18, 0)))
+INSERT [dbo].[Empleado] ([IDEmpleado], [Nombre], [Cargo], [Salario]) VALUES (104, N'Luis Sanchez', N'Desarrollador', CAST(48000 AS Decimal(18, 0)))
+INSERT [dbo].[Empleado] ([IDEmpleado], [Nombre], [Cargo], [Salario]) VALUES (105, N'Laura Herrera', N'Asistente Administrativo', CAST(30000 AS Decimal(18, 0)))
+GO
+INSERT [dbo].[Servicios] ([ServicioID], [NombreServicio], [IDEmpleado], [CostoServicio]) VALUES (101, N'Mantenimiento Preventivo', 101, CAST(25000.00 AS Decimal(10, 2)))
+INSERT [dbo].[Servicios] ([ServicioID], [NombreServicio], [IDEmpleado], [CostoServicio]) VALUES (102, N'Instalación de redes', 102, CAST(5500.00 AS Decimal(10, 2)))
+INSERT [dbo].[Servicios] ([ServicioID], [NombreServicio], [IDEmpleado], [CostoServicio]) VALUES (103, N'Consultoría Financiera', 103, CAST(9000.00 AS Decimal(10, 2)))
+INSERT [dbo].[Servicios] ([ServicioID], [NombreServicio], [IDEmpleado], [CostoServicio]) VALUES (104, N'Desarrollo de Software', 104, CAST(30000.00 AS Decimal(10, 2)))
+INSERT [dbo].[Servicios] ([ServicioID], [NombreServicio], [IDEmpleado], [CostoServicio]) VALUES (105, N'Soporte Técnico', 105, CAST(6000.00 AS Decimal(10, 2)))
+GO
+ALTER TABLE [dbo].[Cliente]  WITH CHECK ADD  CONSTRAINT [FK_Cliente_Servicios] FOREIGN KEY([ServicioID])
+REFERENCES [dbo].[Servicios] ([ServicioID])
+GO
+ALTER TABLE [dbo].[Cliente] CHECK CONSTRAINT [FK_Cliente_Servicios]
+GO
+ALTER TABLE [dbo].[Servicios]  WITH CHECK ADD  CONSTRAINT [FK_Servicios_Empleado] FOREIGN KEY([IDEmpleado])
+REFERENCES [dbo].[Empleado] ([IDEmpleado])
+GO
+ALTER TABLE [dbo].[Servicios] CHECK CONSTRAINT [FK_Servicios_Empleado]
+GO
+USE [master]
+GO
+ALTER DATABASE [ServiciosRPD] SET  READ_WRITE 
+GO
