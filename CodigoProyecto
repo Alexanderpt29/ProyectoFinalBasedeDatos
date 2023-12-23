@@ -1,9 +1,8 @@
-/*Nombre: José Alexander Perez, Matricula: 19-EIIN-1-041, Sección: 0541*/
-
-
+/*Nombre: José Alexander Pérez, Matricula: 19-EIIN-1-041, Sección:0541*/   
 
 USE [master]
 GO
+/****** Object:  Database [ServiciosRPD]    Script Date: 22/12/2023 10:00:47 p. m. ******/
 CREATE DATABASE [ServiciosRPD]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -85,7 +84,7 @@ ALTER DATABASE [ServiciosRPD] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEA
 GO
 USE [ServiciosRPD]
 GO
-/****** Object:  Table [dbo].[Cliente]    Script Date: 21/12/2023 7:21:32 p. m. ******/
+/****** Object:  Table [dbo].[Cliente]    Script Date: 22/12/2023 10:00:47 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -103,7 +102,7 @@ CREATE TABLE [dbo].[Cliente](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Empleado]    Script Date: 21/12/2023 7:21:32 p. m. ******/
+/****** Object:  Table [dbo].[Empleado]    Script Date: 22/12/2023 10:00:47 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -119,7 +118,7 @@ CREATE TABLE [dbo].[Empleado](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Servicios]    Script Date: 21/12/2023 7:21:32 p. m. ******/
+/****** Object:  Table [dbo].[Servicios]    Script Date: 22/12/2023 10:00:47 p. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -140,18 +139,33 @@ INSERT [dbo].[Cliente] ([IDCliente], [NombreCliente], [DireccionCliente], [Telef
 INSERT [dbo].[Cliente] ([IDCliente], [NombreCliente], [DireccionCliente], [TelefonoCliente], [CorreoCliente], [ServicioID]) VALUES (3, N'Pedro Gomez', N'Calle Duarte, La Romana', N'8496322589', N'pedrogomez@gmail.com', 103)
 INSERT [dbo].[Cliente] ([IDCliente], [NombreCliente], [DireccionCliente], [TelefonoCliente], [CorreoCliente], [ServicioID]) VALUES (4, N'Laura Jimenez', N'Calle Las Palmas, Herrera', N'8095877462', N'laura.jimenez@gmail.com', 104)
 INSERT [dbo].[Cliente] ([IDCliente], [NombreCliente], [DireccionCliente], [TelefonoCliente], [CorreoCliente], [ServicioID]) VALUES (5, N'Rafael Castillo', N'Av. Abraham Lincoln, Santo Domingo', N'8096589632', N'rafaelcastillo@gmail.com', 105)
+INSERT [dbo].[Cliente] ([IDCliente], [NombreCliente], [DireccionCliente], [TelefonoCliente], [CorreoCliente], [ServicioID]) VALUES (6, N'Juan Orozco', N'Av. Jose Abreu, Santo Domingo Norte', N'8296988521', N'jOrozco@gmail.com', 106)
+INSERT [dbo].[Cliente] ([IDCliente], [NombreCliente], [DireccionCliente], [TelefonoCliente], [CorreoCliente], [ServicioID]) VALUES (7, N'Pablo Alboran', N'#34, Calle La Luz, Santo Domingo Este', N'8496893256', N'thupablito@gmail.com', 107)
+INSERT [dbo].[Cliente] ([IDCliente], [NombreCliente], [DireccionCliente], [TelefonoCliente], [CorreoCliente], [ServicioID]) VALUES (8, N'Starlin Gregorio', N'Calle Las Flores, Herrera', N'8096589874', N'sgregorio@hotmail.com', 108)
+INSERT [dbo].[Cliente] ([IDCliente], [NombreCliente], [DireccionCliente], [TelefonoCliente], [CorreoCliente], [ServicioID]) VALUES (9, N'Ñeto TiraPiedra', N'Av. Maximo Gomez, #23, STD.', N'8093214569', N'elñetoñeto@gmail.com', 109)
+INSERT [dbo].[Cliente] ([IDCliente], [NombreCliente], [DireccionCliente], [TelefonoCliente], [CorreoCliente], [ServicioID]) VALUES (10, N'Trabito Trabuca', N'Ciudad Gothica, #86', N'8298526395', N'trabitotrabuca@gmail.com', 110)
 GO
 INSERT [dbo].[Empleado] ([IDEmpleado], [Nombre], [Cargo], [Salario]) VALUES (101, N'Ana Garcia', N'Gerente de Ventas', CAST(50000 AS Decimal(18, 0)))
 INSERT [dbo].[Empleado] ([IDEmpleado], [Nombre], [Cargo], [Salario]) VALUES (102, N'Carlos Mendez', N'Tecnico de Soporte', CAST(35000 AS Decimal(18, 0)))
 INSERT [dbo].[Empleado] ([IDEmpleado], [Nombre], [Cargo], [Salario]) VALUES (103, N'Martas Martinez', N'Contadora', CAST(45000 AS Decimal(18, 0)))
 INSERT [dbo].[Empleado] ([IDEmpleado], [Nombre], [Cargo], [Salario]) VALUES (104, N'Luis Sanchez', N'Desarrollador', CAST(48000 AS Decimal(18, 0)))
 INSERT [dbo].[Empleado] ([IDEmpleado], [Nombre], [Cargo], [Salario]) VALUES (105, N'Laura Herrera', N'Asistente Administrativo', CAST(30000 AS Decimal(18, 0)))
+INSERT [dbo].[Empleado] ([IDEmpleado], [Nombre], [Cargo], [Salario]) VALUES (106, N'Juan Heredia', N'Técnico Eléctronico', CAST(30000 AS Decimal(18, 0)))
+INSERT [dbo].[Empleado] ([IDEmpleado], [Nombre], [Cargo], [Salario]) VALUES (107, N'Benito Manuel', N'Técnico Eléctronico', CAST(45000 AS Decimal(18, 0)))
+INSERT [dbo].[Empleado] ([IDEmpleado], [Nombre], [Cargo], [Salario]) VALUES (108, N'Albaro Ojeda', N'Ténico Eléctricista', CAST(35000 AS Decimal(18, 0)))
+INSERT [dbo].[Empleado] ([IDEmpleado], [Nombre], [Cargo], [Salario]) VALUES (109, N'Silvio Silverio', N'Plomero', CAST(25000 AS Decimal(18, 0)))
+INSERT [dbo].[Empleado] ([IDEmpleado], [Nombre], [Cargo], [Salario]) VALUES (110, N'Rivera Repipi', N'Plomero', CAST(25000 AS Decimal(18, 0)))
 GO
 INSERT [dbo].[Servicios] ([ServicioID], [NombreServicio], [IDEmpleado], [CostoServicio]) VALUES (101, N'Mantenimiento Preventivo', 101, CAST(25000.00 AS Decimal(10, 2)))
 INSERT [dbo].[Servicios] ([ServicioID], [NombreServicio], [IDEmpleado], [CostoServicio]) VALUES (102, N'Instalación de redes', 102, CAST(5500.00 AS Decimal(10, 2)))
 INSERT [dbo].[Servicios] ([ServicioID], [NombreServicio], [IDEmpleado], [CostoServicio]) VALUES (103, N'Consultoría Financiera', 103, CAST(9000.00 AS Decimal(10, 2)))
 INSERT [dbo].[Servicios] ([ServicioID], [NombreServicio], [IDEmpleado], [CostoServicio]) VALUES (104, N'Desarrollo de Software', 104, CAST(30000.00 AS Decimal(10, 2)))
 INSERT [dbo].[Servicios] ([ServicioID], [NombreServicio], [IDEmpleado], [CostoServicio]) VALUES (105, N'Soporte Técnico', 105, CAST(6000.00 AS Decimal(10, 2)))
+INSERT [dbo].[Servicios] ([ServicioID], [NombreServicio], [IDEmpleado], [CostoServicio]) VALUES (106, N'Instalación de Camaras', 106, CAST(30000.00 AS Decimal(10, 2)))
+INSERT [dbo].[Servicios] ([ServicioID], [NombreServicio], [IDEmpleado], [CostoServicio]) VALUES (107, N'Reparación Electronica', 107, CAST(15000.00 AS Decimal(10, 2)))
+INSERT [dbo].[Servicios] ([ServicioID], [NombreServicio], [IDEmpleado], [CostoServicio]) VALUES (108, N'Instalación de Plantas Eléctricas', 108, CAST(90000.00 AS Decimal(10, 2)))
+INSERT [dbo].[Servicios] ([ServicioID], [NombreServicio], [IDEmpleado], [CostoServicio]) VALUES (109, N'Servicios de Plomeria', 109, CAST(5000.00 AS Decimal(10, 2)))
+INSERT [dbo].[Servicios] ([ServicioID], [NombreServicio], [IDEmpleado], [CostoServicio]) VALUES (110, N'Servicios de Fontaneria', 110, CAST(5000.00 AS Decimal(10, 2)))
 GO
 ALTER TABLE [dbo].[Cliente]  WITH CHECK ADD  CONSTRAINT [FK_Cliente_Servicios] FOREIGN KEY([ServicioID])
 REFERENCES [dbo].[Servicios] ([ServicioID])
